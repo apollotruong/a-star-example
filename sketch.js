@@ -7,7 +7,9 @@ function removeFromArray(arr,elt){
 }
 
 function heuristic(a,b){
-    var d = dist(a.i,a.j,b.i,b.j);
+    // var d = dist(a.i,a.j,b.i,b.j); Euclidean Distance
+    // Manhattan distance
+    var d = abs(a.i-b.i) + abs(a.j-b.j);
     return d;
 }
 
@@ -20,6 +22,7 @@ var closedSet = [];
 var start;
 var end;
 var w,h;
+var path = [];
 
 function Spot(i,j) {
     this.i = i;
@@ -28,6 +31,7 @@ function Spot(i,j) {
     this.g = 0;
     this.h = 0;
     this.neighbors = [];
+    this.previous = undefined;
 
     this.show = function(col) {
         fill(col);
@@ -104,7 +108,10 @@ function draw() {
         var current = openSet[winner];
 
 
-        if(current == end) {
+        if(current === end) {
+
+            
+            noLoop();
             console.log("DONE!");
         }
 
@@ -127,6 +134,7 @@ function draw() {
                 }
                 neighbor.h = heuristic(neighbor,end);
                 neighbor.f = neighbor.g + neighbor.h;
+                neighbor.previous = current;
 
             }
 
@@ -153,6 +161,20 @@ function draw() {
 
     for (var i = 0; i < openSet.length; i++){
         openSet[i].show(color(0,255,0));
+    }
+
+    // Find the path
+    path = [];
+    var temp = current;
+    path.push(temp);
+
+    while(temp.previous){
+        path.push(temp.previous);
+        temp = temp.previous;
+    }
+
+    for (var i = 0; i < path.length; i++){
+        path[i].show(color(0,0,255));
     }
 
 }
