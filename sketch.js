@@ -7,14 +7,14 @@ function removeFromArray(arr, elt) {
 }
 
 function heuristic(a, b) {
-  // var d = dist(a.i,a.j,b.i,b.j); Euclidean Distance
+  var d = dist(a.i,a.j,b.i,b.j); //Euclidean Distance
   // Manhattan distance
-  var d = abs(a.i - b.i) + abs(a.j - b.j);
+//   var d = abs(a.i - b.i) + abs(a.j - b.j);
   return d;
 }
 
-var cols = 25;
-var rows = 25;
+var cols = 50;
+var rows = 50;
 var grid = new Array(cols);
 
 var openSet = [];
@@ -136,17 +136,24 @@ function draw() {
       if (!closedSet.includes(neighbor) && !neighbor.wall) {
         var tempG = current.g + 1;
 
+        var newPath = false;
         if (openSet.includes(neighbor)) {
           if (tempG < neighbor.g) {
             neighbor.g = tempG;
+            newPath = true;
           }
         } else {
           neighbor.g = tempG;
+          newPath = true;
           openSet.push(neighbor);
         }
-        neighbor.h = heuristic(neighbor, end);
-        neighbor.f = neighbor.g + neighbor.h;
-        neighbor.previous = current;
+
+        if(newPath){
+            neighbor.h = heuristic(neighbor, end);
+            neighbor.f = neighbor.g + neighbor.h;
+            neighbor.previous = current;
+        }
+        
       }
     }
   } else {
