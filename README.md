@@ -3,6 +3,7 @@
 ## Description
 WIP coding example!
 This is a coding example based on the algorithm from 
+
 `https://en.wikipedia.org/wiki/A*_search_algorithm`
 
 
