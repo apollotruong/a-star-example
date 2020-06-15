@@ -8,8 +8,7 @@ function removeFromArray(arr, elt) {
 
 function heuristic(a, b) {
   var d = dist(a.i,a.j,b.i,b.j); //Euclidean Distance
-// Manhattan distance
-//  var d = abs(a.i - b.i) + abs(a.j - b.j);
+  // var d = abs(a.i - b.i) + abs(a.j - b.j); // Manhattan distance
   return d;
 }
 
@@ -27,11 +26,10 @@ var nosolution = false;
 
 function setup() {
   createCanvas(500, 500);
-  console.log("A*");
   w = width / cols;
   h = height / rows;
 
-  // making 2d array
+  // Making 2-D Array
   for (var i = 0; i < cols; i++) {
     grid[i] = new Array(rows);
   }
@@ -42,6 +40,7 @@ function setup() {
     }
   }
 
+  // Add all available neighbors
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
       grid[i][j].addNeighbors(grid);
@@ -49,10 +48,11 @@ function setup() {
   }
 
   start = grid[0][0];
-  end = grid[cols - 1][rows - 1];
-
   start.wall = false;
+
+  end = grid[cols - 1][rows - 1];
   end.wall = false;
+
   openSet.push(start);
 
   console.log(grid);
@@ -100,7 +100,6 @@ function draw() {
             neighbor.f = neighbor.g + neighbor.h;
             neighbor.previous = current;
         }
-        
       }
     }
   } else {
