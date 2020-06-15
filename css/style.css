@@ -1,0 +1,9 @@
+* {
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "courier";
+    color: rgba(255, 250, 240, 0.897);
+    background-color: #2e3440;
+    font-size: 21px;
+  }
