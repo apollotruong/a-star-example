@@ -6,12 +6,6 @@ function removeFromArray(arr, elt) {
   }
 }
 
-function heuristic(a, b) {
-  var d = dist(a.i,a.j,b.i,b.j); //Euclidean Distance
-  // var d = abs(a.i - b.i) + abs(a.j - b.j); // Manhattan distance
-  return d;
-}
-
 var cols = 50;
 var rows = 50;
 var grid = new Array(cols);
@@ -29,7 +23,7 @@ function setup() {
   w = width / cols;
   h = height / rows;
 
-  // Making 2-D Array
+  // Making 2-D Array of Spot
   for (var i = 0; i < cols; i++) {
     grid[i] = new Array(rows);
   }
@@ -47,6 +41,7 @@ function setup() {
     }
   }
 
+  // Define start && end
   start = grid[0][0];
   start.wall = false;
 
