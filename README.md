@@ -8,7 +8,7 @@ This is a coding example based on the algorithm from
 
 ## Preview
 
-![example](example.png)
+![example](example.PNG)
 
 The A* algorithm in this implementation assumes the **Top-left** is the **start** and the **Bottom-right** is the **goal**
 
